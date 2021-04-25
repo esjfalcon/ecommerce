@@ -33,7 +33,7 @@ Route::get('removecart/{id}', 'ProductController@removecart');
 Route::get('ordernow', 'ProductController@ordernow');
 Route::post('orderplace', 'ProductController@orderplace');
 Route::get('myorders', 'ProductController@myorders');
-Route::post('addqty', 'ProductController@addqty');
+// Route::post('addqty', 'ProductController@addqty');
 Route::get('admin', 'UserController@admin');
 Route::post('/deleteProduct', 'ProductController@deleteProduct');
 Route::get('/addproduct', function () {
@@ -43,5 +43,14 @@ Route::post('/addproduct', 'ProductController@addproduct');
 
 
 
-Route::get('phones', 'CategoriesController@categories');
+Route::get('phones/{id}', 'CategoriesController@categories');
+Route::get('/register', function () {
+    return view('register');
+});
+Route::post('/register', 'UserController@register');
+
+Route::get('/delete_prd', function () {
+	Session::forget('cart');
+    return view('/cart');
+});
 

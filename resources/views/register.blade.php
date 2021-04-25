@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title>Register</title>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,8 +32,15 @@
 <div class="container custom-lo">
 	<div class="row">
 		<div class="col-sm-4 col-sm-offset-4">
-			<form action="/login" method="POST">
+
+			<form action="/register" method="POST">
 				{{ csrf_field() }}
+
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Name</label>
+				    <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
+				    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Email address</label>
 				    <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -43,8 +50,8 @@
 				    <label for="exampleInputPassword1">Password</label>
 				    <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
 				  </div>
-				  <button type="submit" class="btn btn-primary">Login</button>
-				  <a href="/register">Register</a>
+				  <button type="submit" class="btn btn-primary">register</button>
+				  <a href="/login">Login</a>
 			</form>
 		</div>
 	</div>

@@ -18,6 +18,8 @@ class ProductController extends Controller
     	return view('product', ['products'=>$data],['categories'=>$categories]);
     }
 
+    
+
 
 
 
@@ -46,8 +48,7 @@ class ProductController extends Controller
 
 
     function addtocart(Request $req){
-        
-
+    if (session('user')!== null) {
         $id = $req->input('query');
         $product = Product::find($id);
         $cart = session()->get('cart');
@@ -80,6 +81,11 @@ class ProductController extends Controller
         ];
         session()->put('cart', $cart);
         return redirect('/cart');
+    }else{
+        return redirect('/login');
+    }
+
+        
     }
 
 

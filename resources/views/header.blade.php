@@ -40,6 +40,8 @@ if(Session::has('user')){
     <link rel="stylesheet" href={{ asset('css/style.css') }}>
     <link rel="stylesheet" href={{ asset('css/responsive.css') }}>
 
+    <script src="https://kit.fontawesome.com/c0b336cd5f.js" crossorigin="anonymous"></script>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -59,7 +61,7 @@ if(Session::has('user')){
 
 
                             @if(Session::has('user'))
-                                <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
+                                <li><a href="#"><i class="fal fa-user"></i> My Account</a></li>
                                 <li><a href="/cart"><i class="fa fa-user"></i> My Cart</a></li>
                             @endif
                             
@@ -112,7 +114,15 @@ if(Session::has('user')){
                 @if(Session::has('user'))
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="/cart">Cart - <span class="cart-amunt"></span> <i class="fa fa-shopping-cart"></i> <span class="product-count"><?php echo $total; ?></span></a>
+                         
+                        <a href="/cart">Cart - <span class="cart-amunt"></span> <i class="fa fa-shopping-cart"></i> <span class="product-count">@if(session('cart'))
+
+                                @foreach(session('cart') as $details)
+                                    {{ $details['quantity'] }},
+                                @endforeach
+                          @endif
+                      </span></a>
+                        
                     </div>
                 </div>
                 @endif
@@ -138,16 +148,7 @@ if(Session::has('user')){
                         
                         <li><a href="/cart">Cart</a></li>
                         <!-- <li><a href="checkout.html">Checkout</a></li> -->
-                        <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories
-                        
-                    <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        @foreach($categories as $cat)
-                    <li><a href="/phones">{{$cat->name}}</a></li>
-                         </li>
-                         @endforeach
-                     </ul>
+                       
                         
                         <li><a href="#">Contact</a></li>
                     </ul>

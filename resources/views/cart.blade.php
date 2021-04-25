@@ -62,8 +62,10 @@
                                                 <span class="amount"><?php echo $total; ?></span> 
                                             </td>
                                         </tr>
+
                                         @endforeach
                                         @endif
+                                        <a href="/delete_prd">delete</a>
                                         <tr>
                                             <td class="actions" colspan="6">
                                                 

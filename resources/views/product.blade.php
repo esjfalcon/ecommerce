@@ -1,9 +1,24 @@
 @include('header')
     
 
+<div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
 
+ <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories
+                        
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @foreach($categories as $cat)
+                    <li><a href="{{ URL('/phones/'.$cat->id) }}">{{$cat->name}}</a></li>
+                         </li>
+                         <!-- <form method="get" action="">
+                             <input type="hidden" name="query">
+                         </form> -->
+                         @endforeach
+                     </ul>
 
-
+                 </li></ul></div>
     <div class="slider-area">
           <!-- Slider -->
       <div class="block-slider block-slider4">

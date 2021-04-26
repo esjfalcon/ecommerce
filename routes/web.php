@@ -17,6 +17,7 @@ Route::get('/login', function () {
 
 Route::get('/logout', function () {
 	Session::forget('user');
+	Session::forget('cart');
     return view('login');
 });
 
@@ -53,4 +54,7 @@ Route::get('/delete_prd', function () {
 	Session::forget('cart');
     return view('/cart');
 });
+
+
+Route::get('account/{id}', 'UserController@account');
 

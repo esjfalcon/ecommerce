@@ -61,7 +61,7 @@ if(Session::has('user')){
 
 
                             @if(Session::has('user'))
-                                <li><a href="#"><i class="fal fa-user"></i> My Account</a></li>
+                                <li><a href="{{URL('/account/'.Session::get('user')['id'])}}"><i class="fas fa-user-circle"></i> My Account</a></li>
                                 <li><a href="/cart"><i class="fa fa-user"></i> My Cart</a></li>
                             @endif
                             
@@ -72,6 +72,12 @@ if(Session::has('user')){
                                     <button type="submit"> Admin panel </button>
                                 </form>
                             @endif
+                            <form action="/search">
+                            {{ csrf_field() }}
+                                
+                                <input type="text" name="query" placeholder="Search">
+                                <button type="submit"> search</button>
+                            </form>
                             
                         </ul>
                     </div>
@@ -144,7 +150,7 @@ if(Session::has('user')){
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/">Home</a></li>
-                        <li><a href="">Shop page</a></li>
+                       
                         
                         <li><a href="/cart">Cart</a></li>
                         <!-- <li><a href="checkout.html">Checkout</a></li> -->

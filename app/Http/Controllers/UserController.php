@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use App\User;
 use App\Product;
 
@@ -46,6 +47,21 @@ class UserController extends Controller
         $user->password = $req->password;
         $user->save();
         return redirect('/login');
+    }
+
+    function account($id){
+
+        if (session('user')!== null) {
+            if ($id == 2) {
+                $user = User::find($id);
+                return view('/account', ['user'=>$user]);
+            }else{
+                return "u can't access";
+            }
+            
+        }else{
+            return redirect('/login');
+        }
     }
 
 }

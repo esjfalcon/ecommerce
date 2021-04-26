@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
+use App\Product; 
 use App\Cart;
 use App\Category;
 use App\Order;
@@ -15,7 +15,9 @@ class ProductController extends Controller
     function index(){
     	$data = Product::with('category')->get();
         $categories = Category::all();
-    	return view('product', ['products'=>$data],['categories'=>$categories]);
+        $last_pro = Product::orderBy('id', 'desc')->take(5)->get();
+    	return view('product', ['products'=>$data,  'last_pro'=>$last_pro, 'categories'=>$categories]);
+
     }
 
     
@@ -25,12 +27,22 @@ class ProductController extends Controller
 
     function detail($id){
     	$data = Product::find($id);
-    	return view('detail', ['product'=>$data]);
+        $cat_id = $data->category_id;
+        $categories = Category::find($cat_id);
+        $last_pro = Product::orderBy('id', 'desc')->take(5)->get();
+        $related_products = Product::where('category_id', $cat_id)->get();
+    	return view('detail', ['productt'=>$data ,'categories'=>$categories, 'related_products'=>$related_products, 'last_pro'=>$last_pro ]);
     }
+
+
+
+
+
     function search(Request $req){
     	
     	$data = Product::where('name', 'like', '%'.$req->input('query').'%')->get();
     	return view('search', ['products'=>$data]);
+
     }
 
     // function addtocart(Request $req){
